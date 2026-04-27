@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>张伟大帅哥</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      background: radial-gradient(ellipse at center, #1a0a28 0%, #0d0715 50%, #05030a 100%);
+      font-family: 'Microsoft YaHei', 'PingFang SC', 'KaiTi', sans-serif;
+      overflow:hidden;
+    }
+    .container{
+      position:relative;
+      text-align:center;
+    }
+    .glow-text{
+      font-size: clamp(3rem, 10vw, 10rem);
+      font-weight:900;
+      color: #ffd700;
+      text-shadow:
+        0 0 10px #ffd100,
+        0 0 20px #ffc100,
+        0 0 40px #ff9500,
+        0 0 80px #ff7800,
+        0 0 120px #ff6000,
+        0 0 200px #ef6e00;
+      animation: pulseGlow 1.5s ease-in-out infinite alternate;
+      user-select:none;
+      cursor:default;
+    }
+    .shimmer{
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:60%;
+      height:100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 40%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.15) 60%, transparent 100%);
+      animation: shimmer 2.5s ease-in-out infinite;
+      pointer-events:none;
+      z-index:10;
+    }
+    @keyframes pulseGlow{
+      0%{
+        text-shadow:
+          0 0 10px #ffd100,
+          0 0 20px #ffc100,
+          0 0 40px #ff9500,
+          0 0 80px #ff7800,
+          0 0 120px #ff6000,
+          0 0 200px #ef6e00;
+        transform: scale(1);
+      }
+      50%{
+        text-shadow:
+          0 0 5px #ffd200,
+          0 0 15px #ffd100,
+          0 0 30px #ffb000,
+          0 0 60px #ff9500,
+          0 0 100px #ff7800,
+          0 0 160px #f06000;
+        transform: scale(1.04);
+      }
+      100%{
+        text-shadow:
+          0 0 10px #ffd100,
+          0 0 20px #ffc100,
+          0 0 40px #ff9500,
+          0 0 80px #ff7800,
+          0 0 120px #ff6000,
+          0 0 200px #ef6e00;
+        transform: scale(1);
+      }
+    }
+    @keyframes shimmer{
+      0%{ left: -100%; }
+      40%{ left: 120%; }
+      100%{ left: 120%; }
+    }
+    .subtitle{
+      margin-top: 20px;
+      font-size: clamp(0.9rem, 2.5vw, 2.5rem);
+      color: #ffda74;
+      text-shadow: 0 0 8px #ffb800, 0 0 20px #ff9000;
+      animation: fadeIn 2s ease-out;
+      letter-spacing: 0.15em;
+    }
+    @keyframes fadeIn{
+      0%{opacity:0;transform:translateY(-20px);}
+      100%{opacity:1;transform:translateY(0);}
+    }
+    .particles{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:-1;
+    }
+    .particles span{
+      position:absolute;
+      display:block;
+      width:4px;
+      height:4px;
+      background: #ffd100;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #ffd100, 0 0 12px #ff9500;
+      animation: floatUp linear infinite;
+      opacity:0;
+    }
+    @keyframes floatUp{
+      0%{
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+      10%{ opacity: 1; }
+      90%{ opacity: 1; }
+      100%{
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="particles" id="particles"></div>
+<div class="container">
+  <div style="position:relative; display:inline-block;">
+    <span class="glow-text">张伟大帅哥</span>
+    <div class="shimmer"></div>
+  </div>
+  <div class="subtitle">✨ 可爱多 👑人见人爱 ✨</div>
+</div>
+<script>
+  (function(){
+    const container = document.getElementById('particles');
+    for(let i=0; i<40; i++){
+      const span = document.createElement('span');
+      span.style.left = Math.random() * 100 + '%';
+      span.style.animationDuration = (Math.random() * 6 + 4) + 's';
+      span.style.animationDelay = Math.random() * 8 + 's';
+      span.style.width = span.style.height = (Math.random() * 4 + 2) + 'px';
+      container.appendChild(span);
+    }
+  })();
+</script>
+</body>
+</html>
